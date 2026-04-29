@@ -1,23 +1,38 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
-    <h1>Products</h1>
-    <br>
-    <br>
+<div class="page-layout">
 
-    {% for product in products %}
-    <div class="product-card">
-        
-        <div class="product-image">
-            <img src="{{ product.image.url }}" alt="{{ product.title }}">
-        </div>
+    <div class="banda-section">
+        <h3 class="object-title">Before and Afters</h3>
 
-        <div class="product-info">
-            <h2>{{ product.title }}</h2>
-            <p>{{ product.description }}</p>
-            <strong class="price">${{ product.price }}</strong>
-        </div>
+        {% for bandA in bandAs %}
+            <div class="banda-container">
+                <img src="{{ bandA.before.url }}" class="banda-img" alt="before">
 
+                <div class="banda-name">{{ bandA.name }}</div>
+
+                <img src="{{ bandA.after.url }}" class="banda-img" alt="after">
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <div class="products-box">
+        <h3 class="object-title">Our Products</h3>
+
+        {% for product in products %}
+            <div class="product-row">
+                <img class="product-image" src="{{ product.image.url }}" alt="{{ product.title }}">
+
+                <div class="product-info">
+                    <div class="product-title">{{ product.title }}</div>
+                    <div class="product-description">{{ product.description }}</div>
+                </div>
+
+                <div class="product-price">{{ product.price }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
 {% endblock %}
