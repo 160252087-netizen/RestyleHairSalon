@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-04y1(jy1a^8*a0q4e(2+fc%=7k0q3(p=w5e*0m5au2*$x!7&s1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['restylehairsalon.pythonanywhere.com']
 
 
 # Application definition
