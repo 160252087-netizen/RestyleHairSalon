@@ -1,0 +1,40 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+<div class="blog-box">
+    <div class="blog-list">
+        <h3 class="object-title">Blog Posts</h3>
+
+        {% for blog in blogposts %}
+            <div class="nlog-row">
+                <img class="stylist-image" src="{{ blog.image.url }}">
+                <div>
+                    <div class="stylist-name">{{ blog.name }}</div>
+                    <div class="stylist-blog">{{ blog.blog }}</div>
+                    
+                    {% if user.is_superuser %}
+                        <a href="{% url 'update_blogpost' blog.pk %}"
+                        class="btn btn-sm btn-outline-dark mt-2">
+                            Update
+                        </a>
+
+                        <form method="POST"
+                            action="{% url 'delete_blogpost' blog.pk %}"
+                            style="display:inline;">
+
+                            {% csrf_token %}
+
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-dark mt-2">
+                                Delete
+                            </button>
+
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

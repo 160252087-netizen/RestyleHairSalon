@@ -1,0 +1,128 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+
+<div class="page-layout">
+
+    <!-- ================= BANDA ================= -->
+
+    <div class="banda-section">
+
+        <h3 class="object-title">
+            Before & Afters
+        </h3>
+
+        {% for bandA in bandAs %}
+
+            <div class="banda-container">
+
+                <img
+                    src="{{ bandA.before.url }}"
+                    class="banda-img"
+                    alt="Before Image"
+                >
+
+                <div class="banda-name">
+                    {{ bandA.name }}
+                </div>
+
+                <img
+                    src="{{ bandA.after.url }}"
+                    class="banda-img"
+                    alt="After Image"
+                >
+
+                {% if user.is_superuser %}
+                    <a href="{% url 'update_BandA' bandA.pk %}"
+                       class="btn btn-sm btn-outline-dark mt-2">
+                        Update
+                    </a>
+
+                    <form method="POST"
+                            action="{% url 'delete_BandA' bandA.pk %}"
+                            style="display:inline;">
+
+                            {% csrf_token %}
+
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-dark mt-2">
+                                Delete
+                            </button>
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p>No Before & After entries available.</p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <div class="products-box">
+
+        <h3 class="object-title">
+            Our Products
+        </h3>
+
+        {% for product in products %}
+
+            <div class="product-row">
+
+                <img
+                    class="product-image"
+                    src="{{ product.image.url }}"
+                    alt="{{ product.title }}"
+                >
+
+                <div class="product-info">
+
+                    <div class="product-title">
+                        {{ product.title }}
+                    </div>
+
+                    <div class="product-description">
+                        {{ product.description }}
+                    </div>
+
+                </div>
+
+                <div class="product-price">
+                    £{{ product.price }}
+                </div>
+
+                {% if user.is_superuser %}
+                    <a href="{% url 'update_product' product.pk %}"
+                       class="btn btn-sm btn-outline-dark mt-2">
+                        Update
+                    </a>
+
+                    <form method="POST"
+                            action="{% url 'delete_product' product.pk %}"
+                            style="display:inline;">
+
+                            {% csrf_token %}
+
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-dark mt-2">
+                                Delete
+                            </button>
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p>No products available.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
