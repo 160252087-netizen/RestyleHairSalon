@@ -1,0 +1,16 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+    <div class="form-layout">
+        <h3> Create a Blog Post</h3>
+        <h5>Fill in all details required</h5>
+        <hr>
+        <br>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

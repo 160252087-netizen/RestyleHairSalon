@@ -1,0 +1,54 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+
+<section class="business-section">
+
+    <div class="business-card">
+
+        <div class="business-card-inner">
+
+            <h1 class="business-title">Our Business</h1>
+
+            <div class="business-info">
+
+                <div class="info-row">
+                    <span class="label">Phone Number</span>
+                    <span class="value">01909 482995</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Email</span>
+                    <span class="value">restylehairsalon@gmail.com</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Address</span>
+                    <span class="value">110 Potter St, Worksop</span>
+                </div>
+
+            </div>
+
+            <div class="social-links">
+
+                <a href="https://www.instagram.com/restylehairsalon/" class="social-item">
+                    <span class="icon">◎</span>
+                    Instagram
+                </a>
+
+                <a href="https://www.facebook.com/restylehairstudio/" class="social-item">
+                    <span class="icon">◉</span>
+                    Facebook
+                </a>
+
+                <a class="social-item" href="{% url 'reviews_page' %}">See our Reviews Here</a>
+
+            </div>
+        </div>
+
+    </div>
+
+    
+
+</section>
+{% endblock %}

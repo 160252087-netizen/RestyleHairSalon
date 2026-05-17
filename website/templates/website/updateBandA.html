@@ -1,0 +1,85 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+
+<div class="update-container">
+
+    <div class="update-card">
+
+        <h2 class="update-title">
+            Update Before & After
+        </h2>
+
+        <div class="banda-preview">
+
+            <img src="{{ banda.before.url }}"
+                 class="update-image"
+                 alt="Before">
+
+            <img src="{{ banda.after.url }}"
+                 class="update-image"
+                 alt="After">
+
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {% for field in form %}
+
+                <div class="form-group">
+
+                    <label>
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                        <small class="form-error">
+                            {{ error }}
+                        </small>
+                    {% endfor %}
+
+                </div>
+
+            {% endfor %}
+
+            <div class="update-actions">
+
+                <button type="submit" class="save-btn">
+                    Save Changes
+                </button>
+
+                <a href="{% url 'products' %}" class="cancel-btn">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+        <!-- DELETE -->
+
+        <form method="POST"
+              action="{% url 'delete_BandA' banda.pk %}"
+              class="delete-form">
+
+            {% csrf_token %}
+
+            <button type="submit"
+                    class="delete-btn"
+                    onclick="return confirm('Delete this entry?');">
+
+                Delete Entry
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
